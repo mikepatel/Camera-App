@@ -57,8 +57,9 @@ public class MainActivity extends AppCompatActivity {
             // check if result was successful
             if(resultCode == RESULT_OK){
                 Bundle extras = data.getExtras();
-                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                Bitmap imageBitmap = (Bitmap) extras.get("data");  // thumbnail image
                 imageView.setImageBitmap(imageBitmap);
+                imageView.setRotation(90);  // use only in portrait mode
             }
         }
     }
