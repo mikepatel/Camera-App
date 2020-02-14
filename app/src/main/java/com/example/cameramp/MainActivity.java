@@ -1,9 +1,5 @@
 package com.example.cameramp;
 
-/*
-Use existing camera application
- */
-
 ///////////////////////////////////////////////////////////////////////////
 // Imports
 import androidx.annotation.NonNull;
