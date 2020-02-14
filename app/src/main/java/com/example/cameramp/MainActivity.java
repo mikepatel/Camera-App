@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         takePictureButton = findViewById(R.id.takePictureButton);
         imageView = findViewById(R.id.imageView);
 
+        /*
         // button listener
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +48,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+         */
+
+        // have camera open automatically using default camera app
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if(cameraIntent.resolveActivity(getPackageManager()) != null){  // prevent app from crashing
+            startActivityForResult(cameraIntent, IMAGE_CAPTURE_REQUEST_CODE);
+        }
+
+        // create my own custom camera preview using SurfaceView
     }
 
     // onActivityResult() --> receive resultCode
