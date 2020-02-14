@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.SurfaceTexture;
+import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,17 +30,19 @@ import java.io.IOException;
 ///////////////////////////////////////////////////////////////////////////
 // MainActivity
 public class MainActivity extends AppCompatActivity {
-
-    // class variable UI elements
+    // ----- CLASS VARIABLES UI ----- //
     //Button takePictureButton;
     //ImageView imageView;
     TextureView textureView;
+
+    // ----- CLASS VARIABLES NON-UI ----- //
+    String cameraID;
 
 
     // request codes
     //final int IMAGE_CAPTURE_REQUEST_CODE = 1;
 
-    // onCreate()
+    // ----- onCreate() ----- //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,11 +79,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     TextureView.SurfaceTextureListener surfaceTextureListener = new TextureView.SurfaceTextureListener() {
-        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
             // open camera
             CameraManager cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+
+            try {
+                cameraID = cameraManager.getCameraIdList()[0];
+
+            } catch (CameraAccessException cae) {
+                cae.printStackTrace();
+            }
         }
 
         @Override
