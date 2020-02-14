@@ -5,7 +5,7 @@ Use existing camera application
  */
 
 ///////////////////////////////////////////////////////////////////////////
-// IMPORTs
+// Imports
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
